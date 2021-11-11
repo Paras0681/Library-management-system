@@ -27,14 +27,8 @@ SECRET_KEY = 's+*+cw=^vz4bdazv65hq+so(#qcbxe92ha4c$^+h&$komwi(cw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if config('APP_DEBUG') == "True" else False
-print(DEBUG)
-if DEBUG:
-    ALLOWED_HOSTS = ['*']
-else:
-    ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
