@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block main-content %} 
+<!-- Slider of the website -->
   <div id="myCarousel" class="carousel slide carousel-fade mx-5 my-5" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -48,31 +49,27 @@
   </div>
 
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
+<!-- Below div is to show 3 latest books added in the database -->
   <div class="container marketing">
   
-{% for d in data %}
-      <div class="card m-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="{{d.books_img.url}}" class="img-fluid rounded-start" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{d.user | title}}</h5>
-              <h5 class="card-title">{{d.books_name}}</h5>
-              <p class="card-text">{{d.books_description}}</p>
+  {% for d in data %}
+        <div class="card m-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{d.books_img.url}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{d.user | title}}</h5>
+                <h5 class="card-title">{{d.books_name}}</h5>
+                <p class="card-text">{{d.books_description}}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
 
-  <!-- START THE FEATURETTES -->
-
+  <!-- Static content of the site -->
   <hr class="featurette-divider">
 
   <div class="row featurette">
@@ -113,7 +110,7 @@
 
   <hr class="featurette-divider">
 
-  <!-- /END THE FEATURETTES -->
+  <!-- /END Static content -->
 
-</div><!-- /.container -->
+</div>
 {% endblock main-content %}

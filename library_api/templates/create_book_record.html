@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block main-content %}
 <h1>Create a book record</h1>
+{% comment %} Below div is to show the error messages {% endcomment %}
 <div class="alert alert-warning" role="alert">
   {% for message in messages %}
       <ul class="messages">
@@ -9,6 +10,7 @@
       </ul>
   {% endfor %}
 </div>
+{% comment %} Create a book record form {% endcomment %}
 <form class="row g-3" method='POST' enctype="multipart/form-data">
 {% csrf_token %}
   <div class="mb-3">

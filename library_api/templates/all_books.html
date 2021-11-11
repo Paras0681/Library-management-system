@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block main-content %} 
+  <!--basic div to get all books from the data -->
   <div class="container marketing mt-5">
     {% for d in data %}
       <div class="card mb-3" style="max-width: 540px;">
@@ -17,5 +18,5 @@
         </div>
       </div>
     {% endfor %}
-  </div><!-- /.container -->
+  </div>
 {% endblock main-content %}

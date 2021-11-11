@@ -13,10 +13,12 @@ from .forms import BookForm
 # )
 
 # Create your views here.
+# Home view to view the homepage of the website
 def home(request):
     data = Book.objects.order_by('-id')[:3]
     return render(request, 'home.html', {'data': data})
 
+# Login view to get required credentials from the user
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -32,6 +34,7 @@ def login(request):
     else:
         return render(request, 'login.html')
 
+# Register view to create new user
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -56,16 +59,18 @@ def register(request):
     else:
         return render(request, 'register.html')
 
+# Logout view to logout from the site
 def logout(request):
     auth.logout(request)
     return redirect('home')
 
+# To retrieve all books
 def all_books(request):
     data = Book.objects.all().order_by('-id')
     return render(request, 'all_books.html', {'data': data})
 
 
-
+# To create new records of the books
 @login_required(login_url='login')
 def create_book_record(request):
     if request.method == 'POST':
