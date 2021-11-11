@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block main-content %} 
+  <div class="container marketing mt-5">
+    {% for d in data %}
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{d.books_img.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Uploaded by: {{d.user | title}}</h5>
+              <h5 class="card-title">Book name: {{d.books_name}}</h5>
+              <p class="card-text">{{d.books_description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div><!-- /.container -->
+{% endblock main-content %}

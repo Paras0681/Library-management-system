@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block main-content %} 
+  <div id="myCarousel" class="carousel slide carousel-fade mx-5 my-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href=""><img src="https://ucarecdn.com/71ac5cae-0666-498b-904b-6799be8eee85/-/scale_crop/820x312/smart" class="d-block w-100" alt="Signup banner"></a>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Library management system</h1>
+            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'all_books' %}"><img src="https://ucarecdn.com/2f0b8abe-cead-4404-974a-b91b0c83660f/-/scale_crop/820x312/smart/" class="d-block w-100" alt="library_img"></a>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>View all the books present in our library.</h1>
+            <p>Here you can view collections of all the books present in our library.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'all_books' %}">View all books</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'create_book_record' %}"><img src="https://ucarecdn.com/8a170215-f903-43ec-a9fb-e7cbda510934/-/scale_crop/820x312/smart/" class="d-block w-100" alt="record_img"></a>
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Create your record of the book</h1>
+            <p>Here you can create your record of the book</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'create_book_record' %}">Create a book</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+  
+{% for d in data %}
+      <div class="card m-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{d.books_img.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{d.user | title}}</h5>
+              <h5 class="card-title">{{d.books_name}}</h5>
+              <p class="card-text">{{d.books_description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+  <!-- START THE FEATURETTES -->
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Made this library management system using Django + Cloudinary + Bootstrap<br><span class="text-muted">I hope i covered all the points mentioned in the asessment</span></h2>
+      <a href='#'><button class="btn btn-primary">Here's the link to checkout the code.</button></a>
+    </div>
+    <div class="col-md-5">
+      <img src='https://res.cloudinary.com/mycloud0681/image/upload/v1636571118/Upload/books_img/library_tswumk.jpg'>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading">Note: This website is made for educational purpose and not for commercial use<br><span class="text-muted">See for yourself.</span></h2>
+      <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <img src='https://res.cloudinary.com/mycloud0681/image/upload/v1636637356/Upload/books_img/unnamed_kil0cj.png'>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h3 class="featurette-heading">About me: <span class="text-muted"><a href="https://paras0681.github.io/portfoliosite.github.io/" target="_blank" rel="noopener noreferrer">Paras Kamble </a></span></h3>
+      <h4 class="featurette-heading">Experienced in Python, Full-stack development. Proficient in React, Django, RestAPI, Heroku, Python, Javascript, HTML, CSS. Passionate about web development, cyber security, technology-related. Looking for an industry that will allow to increase my skills in full-stack development.</h4>
+      <a href="https://github.com/Paras0681" target="_blank" rel="noopener noreferrer"><img src='https://res.cloudinary.com/mycloud0681/image/upload/v1636638211/Upload/books_img/foldergreengithub_93232_c3xhpa.png'></a>
+      <a href="https://paras0681.github.io/portfoliosite.github.io/" target="_blank" rel="noopener noreferrer"><img src='https://res.cloudinary.com/mycloud0681/image/upload/v1636638372/Upload/books_img/ilustracoes_04-12_icon-icons.com_75471_umuswh.png'></a>
+    </div>
+    <div class="col-md-5">
+      <img src='https://res.cloudinary.com/mycloud0681/image/upload/v1636637682/Upload/books_img/pic_uioozw.jpg' height='500' width='70%'>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+{% endblock main-content %}
