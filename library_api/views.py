@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 from . models import Book
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
+import cloudinary.uploader 
+from django.conf import settings
+from .forms import BookForm
+# cloudinary.config(
+#     cloud_name = settings.CLOUDINARY_STORAGE['CLOUD_NAME'],
+#     api_key = settings.CLOUDINARY_STORAGE['API_KEY'],
+#     api_secret = settings.CLOUDINARY_STORAGE['API_SECRET']
+# )
 
 # Create your views here.
 def home(request):
@@ -56,19 +64,19 @@ def all_books(request):
     data = Book.objects.all().order_by('-id')
     return render(request, 'all_books.html', {'data': data})
 
+
+
 @login_required(login_url='login')
 def create_book_record(request):
     if request.method == 'POST':
         try:
             user = request.user
-            books_name = request.POST['books_name']
-            books_img = request.POST['books_img']
-            books_description= request.POST['books_description']
-            if not user or not books_name or not books_img or not books_description:
-                messages.error(request, 'All fields are mandatory')
-                return redirect('create_book_record')
-            data = Book(books_name=books_name, books_img=books_img, books_description=books_description, user=user)
-            data.save()
+            context = dict( backend_form = BookForm())
+            form = BookForm(request.POST, request.FILES)
+            context['posted'] = form.instance
+            if form.is_valid():
+                data = Book(books_name = form.cleaned_data['books_name'], books_img = form.cleaned_data['books_img'], books_description= form.cleaned_data['books_description'], user=user)
+                data.save()
             messages.info(request, 'New Book record created')
         except Exception as e:
             messages.error(request, e)
