@@ -9,7 +9,7 @@
       </ul>
   {% endfor %}
 </div>
-{% comment %} Create a book record form {% endcomment %}
+{% comment %} Update book record form {% endcomment %}
 <form class="row g-3" method='POST' enctype="multipart/form-data">
 <h1>Update a book record</h1>
 {% csrf_token %}
@@ -54,7 +54,7 @@
       Update
     </button>
     <a type="cancel" class="btn btn-outline-danger" href="{% url 'home' %}">
-      Cancel
+      Exit
     </a>
   </div>
 </form>
