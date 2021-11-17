@@ -63,6 +63,13 @@
                 <h5 class="card-title">{{d.user | title}}</h5>
                 <h5 class="card-title">{{d.books_name}}</h5>
                 <p class="card-text">{{d.books_description}}</p>
+                {% if request.user == d.user %}
+                  <a class="btn btn-primary" href="{% url 'update_book_record' d.id %}"
+                  >Update</a>
+                  <a class="btn btn-danger" href="{% url 'delete_record' d.id %}"
+                  >Delete</a>
+                {% else %}
+                {% endif %}
               </div>
             </div>
           </div>

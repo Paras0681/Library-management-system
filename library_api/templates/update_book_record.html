@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block main-content %}
+{% comment %} Below div is to show the error messages {% endcomment %}
+<div class="alert alert-warning m-5" role="alert">
+  {% for message in messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  {% endfor %}
+</div>
+{% comment %} Create a book record form {% endcomment %}
+<form class="row g-3" method='POST' enctype="multipart/form-data">
+<h1>Update a book record</h1>
+{% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">User: </label>
+    <input
+      disabled
+      type="text"
+      class="form-control"
+      name="username"
+      value="{{books_data.user}}"
+    />
+  </div>
+  
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Book name: </label>
+    <input
+      type="text"
+      class="form-control"
+      name="books_name"
+      placeholder="Book name"
+      value="{{books_data.books_name}}"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Book image: </label>
+    <input type="file" id="img" name="books_img" accept="image/*">
+    <span>{{books_data.books_img.url}}</span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Book description: </label>
+    <input
+      type="text"
+      class="form-control"
+      name="books_description"
+      placeholder="Book description"
+      value="{{books_data.books_description}}"
+    />
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-outline-info">
+      Update
+    </button>
+    <a type="cancel" class="btn btn-outline-danger" href="{% url 'home' %}">
+      Cancel
+    </a>
+  </div>
+</form>
+{% endblock main-content %}

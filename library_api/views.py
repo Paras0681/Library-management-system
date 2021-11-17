@@ -69,6 +69,10 @@ def all_books(request):
     data = Book.objects.all().order_by('-id')
     return render(request, 'all_books.html', {'data': data})
 
+def author_books(request):
+    data = Book.objects.filter(user=request.user).order_by('-id')
+    return render(request, 'all_books.html', {'data': data})
+
 
 # To create new records of the books
 @login_required(login_url='login')
@@ -87,3 +91,31 @@ def create_book_record(request):
             messages.error(request, e)
             return redirect('create_book_record')
     return render(request, 'create_book_record.html')
+
+def update_book_record(request, pk):
+    books_data = Book.objects.get(id=pk)
+    if books_data.user != request.user:
+        return redirect('home')
+    if request.method == 'POST':
+        try:
+            form = BookForm(request.POST, request.FILES, instance=books_data)
+            if form.is_valid():
+                books_data.books_name = form.cleaned_data['books_name'] if form.cleaned_data.get('books_name') else books_data.books_name
+                books_data.books_img = form.cleaned_data['books_img'] if form.cleaned_data.get('books_img') else books_data.books_img
+                books_data.books_description = form.cleaned_data['books_description'] if form.cleaned_data.get('books_description') else books_data.books_description
+                books_data.save()
+            messages.info(request, 'Book record updated')
+        except Exception as e:
+            messages.error(request, e)
+            return redirect('create_book_record')
+
+    
+    return render(request, 'update_book_record.html', {'books_data': books_data})
+
+def delete_record(request, pk):
+    books_data = Book.objects.get(id=pk)
+    if books_data.user != request.user:
+        return redirect('home')
+    books_data.delete()   
+    return redirect('all_books')
+

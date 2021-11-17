@@ -73,7 +73,12 @@
                 <a class="nav-link" href="{% url 'create_book_record' %}"
                   >Create a book</a
                 >
-              </li>              
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'author_books' %}"
+                  >Update book</a
+                >
+              </li>               
               <li class="nav-item">
                 <a class="nav-link disabled" aria-current="page" href="#"
                   ><h4> Welcome {{user.username | title}} !</h4></a
